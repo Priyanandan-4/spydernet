@@ -6,7 +6,6 @@
     <title>BuildWise Construction</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Add Font Awesome for better icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -14,27 +13,46 @@
             min-height: 100vh;
             margin: 0;
         }
-         nav {
+        nav {
             position: absolute;
             top: 0;
-            width: 100%; 
             z-index: 20;
-         } 
-         .project-section{
+        } 
+        .project-section {
             background-image: url('/images/project-bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 100vh;
-            width: 100%;
-         }
-        .hero {
+             /* min-height: 100vh; */
+            /* width: 100vw; */
+        }
+        
+        .project-card .hover-content {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .hover-content {
+            opacity: 1;
+        }
+
+        .project-card {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .hero-section {
             background-image: url('/images/hero-bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 100vh;
-            width: 100%;
+            /* min-height: 100vh; */
+            /* width: 100vw; */
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
         }
         .mobile-menu {
             transition: transform 0.3s ease-in-out;
@@ -47,7 +65,6 @@
                 overflow-x: hidden;
             }
         }
-        /* Add some animation for arrow icons */
         .arrow-icon {
             transition: transform 0.3s ease;
         }
@@ -58,188 +75,162 @@
 </head>
 <body class="overflow-x-hidden">
     <!-- Navigation Section -->
-   <nav class="text-white py-2 px-6 bg-gray-900 bg-opacity-80">
-    <div class="container mx-auto flex justify-between items-center">
-        <div class="hidden md:flex justify-between items-center w-full">
-            <!-- Left menu items -->
-            <div class="flex space-x-4 items-center ml-32 text-[12px]">
+    <nav class="text-white py-2 px-6 bg-gray-900 bg-opacity-80 w-full">
+        <div class="container mx-auto flex justify-between items-center max-w-6xl">
+            <div class="hidden md:flex justify-between items-center w-full">
+                <div class="flex space-x-4 items-center ml-32 text-[12px]">
+                    <a href="#" class="hover:text-amber-400 transition">Home</a>
+                    <a href="#" class="hover:text-amber-400 transition">About</a>
+                    <a href="#" class="hover:text-amber-400 transition">Joint Venture</a>
+                    <a href="#" class="hover:text-amber-400 transition">Services</a>
+                </div>
+                <div class="flex-shrink-0">
+                    <img src="/images/icon.png" alt="BuildWise Logo" class="h-24">
+                </div>
+                <div class="flex space-x-8 items-center mr-32 text-[12px]">
+                    <a href="#" class="hover:text-amber-400 transition">Project</a>
+                    <a href="#" class="hover:text-amber-400 transition">Careers</a>
+                    <a href="#" class="hover:text-amber-400 transition">Blog</a>
+                    <a href="#" class="hover:text-amber-400 transition">Contact</a>
+                </div>
+            </div>
+            <div class="md:hidden flex justify-between items-center w-full">
+                <div class="flex items-center">
+                    <img src="/images/icon.png" alt="BuildWise Logo" class="h-16">
+                    <h1 class="ml-4 text-[#F7D994] font-family">BUILDWSE</h1>
+                </div>
+                <button id="mobileMenuBtn" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu mobile-menu-hidden md:hidden fixed top-0 right-0 h-full w-64 bg-gray-900 bg-opacity-80 text-white p-6 z-30">
+            <button id="closeMenuBtn" class="mb-8 focus:outline-none">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="flex flex-col space-y-4">
                 <a href="#" class="hover:text-amber-400 transition">Home</a>
                 <a href="#" class="hover:text-amber-400 transition">About</a>
                 <a href="#" class="hover:text-amber-400 transition">Joint Venture</a>
                 <a href="#" class="hover:text-amber-400 transition">Services</a>
-            </div>
-            
-            <!-- Logo - centered on desktop -->
-            <div class="flex-shrink-0">
-                <img src="/images/icon.png" alt="BuildWise Logo" class="h-20">
-            </div>
-            
-            <!-- Right menu items -->
-            <div class="flex space-x-8 items-center mr-32 text-[12px]">
                 <a href="#" class="hover:text-amber-400 transition">Project</a>
                 <a href="#" class="hover:text-amber-400 transition">Careers</a>
                 <a href="#" class="hover:text-amber-400 transition">Blog</a>
                 <a href="#" class="hover:text-amber-400 transition">Contact</a>
             </div>
         </div>
-        
-        <!-- Mobile view - Logo on left, menu button on right -->
-        <div class="md:hidden flex justify-between items-center w-full ">
-            <div class="flex items-center">
-                <img src="/images/icon.png" alt="BuildWise Logo" class="h-16">
-                <h1 class="ml-4 text-[#F7D994] font-family" >BUILDWSE</h1>
-            </div>
-            <button id="mobileMenuBtn" class="text-white focus:outline-none">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
-        </div>
-    </div>
-    
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="mobile-menu mobile-menu-hidden md:hidden fixed top-0 right-0 h-full w-64  bg-gray-900 bg-opacity-80 text-white p-6 z-30">
-        <button id="closeMenuBtn" class="mb-8 focus:outline-none">
-            <i class="fas fa-times text-xl"></i>
-        </button>
-        <div class="flex flex-col space-y-4">
-            <a href="#" class="hover:text-amber-400 transition">Home</a>
-            <a href="#" class="hover:text-amber-400 transition">About</a>
-            <a href="#" class="hover:text-amber-400 transition">Joint Venture</a>
-            <a href="#" class="hover:text-amber-400 transition">Services</a>
-            <a href="#" class="hover:text-amber-400 transition">Project</a>
-            <a href="#" class="hover:text-amber-400 transition">Careers</a>
-            <a href="#" class="hover:text-amber-400 transition">Blog</a>
-            <a href="#" class="hover:text-amber-400 transition">Contact</a>
-        </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- Hero Section -->
-<section class="relative hero-section">
-    <div class="container hero py-12 md:py-24 relative z-10 flex flex-col items-center justify-center px-4">
-        <div class="flex flex-col md:flex-row items-center w-full max-w-7xl md:gap-28">
-            <!-- Hero Text - Left on desktop, centered on mobile -->
-            <div class="text-white mt-8 md:mt-24 md:w-1/2 text-center md:text-left order-2 md:order-1">
-                <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-2">WE ARE</h2>
-                <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold text-[#F7D994] mb-2">BEST BUILDERS</h2>
-                <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-6">IN THIS CITY</h2>
-                <p class="mb-8 max-w-lg mx-auto md:mx-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#" class="bg-transparent font-semibold border-2 border-[#F7D994] text-white px-6 py-3 flex items-center justify-between group hover:bg-white hover:text-gray-900 transition duration-300">
-                        <span>OUR PORTFOLIO</span>
-                        <span class="ml-4 group-hover:translate-x-1  bg-[#F7D994] text-black">
-                            <button class="bg-[#F7D994] hover:bg-[#CB9639] px-3 p-1 flex items-center justify-center">
-                                <i class="fas fa-arrow-right"></i>
+    <!-- Hero Section -->
+    <section class="hero-section ">
+        <div class="container  mx-auto max-w-6xl md:py-12 py-48 relative z-10 flex flex-col items-center justify-center px-4 ">
+            <div class="flex flex-col md:flex-row items-center w-full md:gap-28">
+                <div class="text-white mt-8 md:mt-24 md:w-1/2 text-center md:text-left order-2 md:order-1">
+                    <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-2">WE ARE</h2>
+                    <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold text-[#F7D994] mb-2">BEST BUILDERS</h2>
+                    <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-6">IN THIS CITY</h2>
+                    <p class="mb-8 max-w-lg mx-auto md:mx-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#" class="bg-transparent font-semibold border-2 border-[#F7D994] text-white px-6 py-3 flex items-center justify-between group hover:bg-amber-500 hover:text-white transition duration-300">
+                            <span>OUR PORTFOLIO</span>
+                            <span class="ml-4 group-hover:translate-x-1 bg-[#F7D994] text-black">
+                                <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </span>
+                        </a>
+                        <a href="#" class="bg-[#CB9639] font-bold px-6 py-3 flex items-center justify-between group hover:bg-amber-500 transition duration-300">
+                            <span>GET FREE QUOTE</span>
+                            <span class="ml-4 group-hover:translate-x-1 bg-[#F7D994] text-black">
+                                <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </span>
+                        </a>
+                        <a href="#" class="md:hidden bg-transparent border-2 border-[#F7D994] font-bold px-6 py-3 flex items-center justify-between group hover:bg-amber-500 transition duration-300">
+                            <span>BOOK A DEMO</span>
+                            <span class="ml-4 group-hover:translate-x-1 bg-[#F7D994] text-black">
+                                <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block w-full max-w-sm md:w-96 mt-8 md:mt-24 order-1 md:order-2">
+                    <div class="bg-gray-900 bg-opacity-80 p-6 rounded-3xl border border-[#F7D994]">
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Name*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
+                            <input type="email" placeholder="Email*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
+                            <input type="tel" placeholder="Phone*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
+                            <input type="text" placeholder="Location*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
+                            <input type="text" placeholder="Land area (sq.ft.)*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
+                            <textarea placeholder="Please explain your requirement" rows="4" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none"></textarea>
+                            <button type="submit" class="w-full text-black py-3 font-semibold bg-[#F7D994] hover:bg-amber-500 hover:text-white transition duration-300">
+                                SUBMIT
                             </button>
-                        </span>
-                    </a>
-                    <a href="#" class="bg-[#CB9639] font-bold px-6 py-3 flex items-center justify-between group hover:bg-amber-500 transition duration-300">
-                        <span>GET FREE QUOTE</span>
-                        <span class="ml-4 group-hover:translate-x-1  bg-[#F7D994] text-black">
-                            <!-- <i class="fas fa-arrow-right arrow-icon"></i> -->
-                            <button class="bg-[#F7D994] hover:bg-[#CB9639] px-3 p-1 flex items-center justify-center">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </span>
-                    </a>
-                    <!-- Book a Demo button for mobile -->
-                    <a href="#" class="md:hidden bg-transparent border-2 border-[#F7D994] font-bold px-6 py-3 flex items-center justify-between group hover:bg-amber-500 transition duration-300">
-                        <span>BOOK A DEMO</span>
-                        <span class="ml-4 group-hover:translate-x-1  bg-[#F7D994] text-black">
-                            <button class="bg-[#F7D994] hover:bg-[#CB9639] px-3 p-1 flex items-center justify-center">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                            
-                        </span>
-                    </a>
+                        </form>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Contact Form - Right on desktop, hidden on mobile -->
-            <div class="hidden md:block w-full max-w-sm md:w-96 mt-8 md:mt-24 order-1 md:order-2">
-                <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg border border-[#F7D994]">
-                    <form class="space-y-4">
-                        <input type="text" placeholder="Name*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
-                        <input type="email" placeholder="Email*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
-                        <input type="tel" placeholder="Phone*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
-                        <input type="text" placeholder="Location*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
-                        <input type="text" placeholder="Land area (sq.ft.)*" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none">
-                        <textarea placeholder="Your requirement" rows="4" class="w-full bg-transparent border-b border-white py-2 text-white focus:outline-none"></textarea>
-                        <button type="submit" class="w-full text-black py-3 font-semibold bg-[#F7D994]">
-                            SUBMIT
-                        </button>
-                    </form>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="bg-[#1a1a1a] w-full stats-section">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row w-full">
+                <div class="flex-1 flex flex-col items-center justify-center py-8 md:py-16 relative">
+                    <h2 class="text-white text-3xl md:text-5xl font-bold mb-1 md:mb-2">120+</h2>
+                    <p class="text-[#F7D994] text-xs md:text-sm tracking-wider uppercase">PROJECTS</p>
+                    <div class="hidden md:block absolute right-0 top-0 bottom-0 w-px bg-[#F7D994]"></div>
+                    <div class="md:hidden absolute bottom-0 left-0 right-0 h-px bg-[#F7D994]"></div>
+                </div>
+                <div class="flex-1 flex flex-col items-center justify-center py-8 md:py-16 relative">
+                    <h2 class="text-white text-3xl md:text-5xl font-bold mb-1 md:mb-2">350+</h2>
+                    <p class="text-[#F7D994] text-xs md:text-sm tracking-wider uppercase">QUALITY CHECK</p>
+                    <div class="hidden md:block absolute right-0 top-0 bottom-0 w-px bg-[#F7D994]"></div>
+                    <div class="md:hidden absolute bottom-0 left-0 right-0 h-px bg-[#F7D994]"></div>
+                </div>
+                <div class="flex-1 flex flex-col items-center justify-center py-8 md:py-16 relative">
+                    <h2 class="text-white text-3xl md:text-5xl font-bold mb-1 md:mb-2">1,000,000</h2>
+                    <p class="text-[#F7D994] text-xs md:text-sm tracking-wider uppercase">SQ.FT.COMPLETED</p>
+                    <div class="hidden md:block absolute right-0 top-0 bottom-0 w-px bg-[#F7D994]"></div>
+                    <div class="md:hidden absolute bottom-0 left-0 right-0 h-px bg-[#F7D994]"></div>
+                </div>
+                <div class="flex-1 flex flex-col items-center justify-center py-8 md:py-16">
+                    <h2 class="text-white text-3xl md:text-5xl font-bold mb-1 md:mb-2">15</h2>
+                    <p class="text-[#F7D994] text-xs md:text-sm tracking-wider uppercase">YEARS WARRANTY</p>
                 </div>
             </div>
         </div>
     </div>
-</section>
-
-<!-- Stats Section - Responsive with smaller text on mobile -->
-<div class="bg-[#1a1a1a] w-full stats-section">
-    <div class="container mx-auto">
-        <div class="flex flex-col md:flex-row w-full">
-            <!-- 120+ Projects -->
-            <div class="flex-1 flex flex-col items-center justify-center py-8 md:py-16 relative">
-                <h2 class="text-white text-3xl md:text-5xl font-bold mb-1 md:mb-2">120+</h2>
-                <p class="text-[#d4b052] text-xs md:text-sm tracking-wider uppercase">PROJECTS</p>
-                <div class="hidden md:block absolute right-0 top-0 bottom-0 w-px bg-[#3d3d3d]"></div>
-                <div class="md:hidden absolute bottom-0 left-0 right-0 h-px bg-[#3d3d3d]"></div>
-            </div>
-            
-            <!-- 350+ Quality Check -->
-            <div class="flex-1 flex flex-col items-center justify-center py-8 md:py-16 relative">
-                <h2 class="text-white text-3xl md:text-5xl font-bold mb-1 md:mb-2">350+</h2>
-                <p class="text-[#d4b052] text-xs md:text-sm tracking-wider uppercase">QUALITY CHECK</p>
-                <div class="hidden md:block absolute right-0 top-0 bottom-0 w-px bg-[#3d3d3d]"></div>
-                <div class="md:hidden absolute bottom-0 left-0 right-0 h-px bg-[#3d3d3d]"></div>
-            </div>
-            
-            <!-- 1,000,000 Sq.Ft.Completed -->
-            <div class="flex-1 flex flex-col items-center justify-center py-8 md:py-16 relative">
-                <h2 class="text-white text-3xl md:text-5xl font-bold mb-1 md:mb-2">1,000,000</h2>
-                <p class="text-[#d4b052] text-xs md:text-sm tracking-wider uppercase">SQ.FT.COMPLETED</p>
-                <div class="hidden md:block absolute right-0 top-0 bottom-0 w-px bg-[#3d3d3d]"></div>
-                <div class="md:hidden absolute bottom-0 left-0 right-0 h-px bg-[#3d3d3d]"></div>
-            </div>
-            
-            <!-- 15 Years Warranty -->
-            <div class="flex-1 flex flex-col items-center justify-center py-8 md:py-16">
-                <h2 class="text-white text-3xl md:text-5xl font-bold mb-1 md:mb-2">15</h2>
-                <p class="text-[#d4b052] text-xs md:text-sm tracking-wider uppercase">YEARS WARRANTY</p>
-            </div>
-        </div>
-    </div>
-</div>
 
     <!-- Testimonials Section -->
     <section class="py-16 testimonials-section overflow-x-hidden">
-        <div class="container mx-auto px-4 max-w-7xl">
+        <div class="container mx-auto px-4 max-w-6xl">
             <div class="flex flex-col md:flex-row gap-8">
-                <!-- Video Testimonial -->
                 <div class="md:w-1/2">
                     <div class="relative w-full max-w-[560px] aspect-square">
-                        <img src="/images/works.png" alt="Construction workers" class="w-full h-full object-cover ">
+                        <img src="/images/works.png" alt="Construction workers" class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <button class="bg-amber-500 hover:bg-amber-600 transition-colors rounded-full w-20 h-20 flex items-center justify-center">
+                            <button class="bg-amber-500 hover:bg-amber-500 transition-colors rounded-full w-20 h-20 flex items-center justify-center">
                                 <i class="fas fa-play text-white text-xl"></i>
                             </button>
                         </div>
                         <div class="absolute bottom-4 right-4 flex space-x-2">
-                            <button class="border-2 border-[#F7D994] hover:bg-gray-200 px-3 p-1 flex items-center justify-center text-white">
+                            <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center text-white">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
-                            <button class="bg-[#F7D994] hover:bg-[#CB9639] px-3 p-1 flex items-center justify-center">
+                            <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center">
                                 <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
-                   
                     </div>
                 </div>
-                
-                <!-- Testimonials Text -->
-                <div class="md:w-1/2 ">
+                <div class="md:w-1/2">
                     <div class="mb-8">
                         <span class="text-[#8B6319] font-medium">Testimonials</span>
                         <h2 class="text-3xl sm:text-4xl font-bold mt-2 mb-4">CLIENT SATISFACTION <br>STORY</h2>
@@ -298,10 +289,10 @@
                                 <i class="fas fa-arrow-right ml-2 arrow-icon bg-[#F7D994] p-1 px-3"></i>
                             </a>
                             <div class="flex space-x-2">
-                                <button class="border-2 border-[#F7D994] hover:bg-gray-200 px-3 p-1 flex items-center justify-center ">
+                                <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center">
                                     <i class="fas fa-arrow-left"></i>
                                 </button>
-                                <button class="bg-[#F7D994] hover:bg-[#CB9639] px-3 p-1 flex items-center justify-center">
+                                <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center">
                                     <i class="fas fa-arrow-right"></i>
                                 </button>
                             </div>
@@ -312,54 +303,72 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section class="relative h-96 bg-black text-white py-16">
-        <!-- Background image -->
-        <div class="absolute inset-0 bg-cover bg-center " style="background-image: url('/images/image.png');"></div>
-      
-        <!-- Content -->
-        <div class="relative container mx-auto px-6 text-center flex flex-col justify-center items-center h-full">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-            CONTACT US FOR YOUR FREE<br />
-            <span class="block">CONSULTATION</span>
-          </h2>
-          <button class="bg-transparent font-semibold border-2 border-[#F7D994] text-black p-3 flex items-center justify-between group hover:bg-black hover:text-black transition duration-300">
-            <span class="text-white ">GET IN TOUCH</span>
-            <span class="ml-4 group-hover:translate-x-1 px-3 bg-[#F7D994] text-black ">
-                <i class="fas fa-arrow-right arrow-icon"></i>
-            </span>
-          </button>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/image.png');"></div>
+        <div class="relative container mx-auto px-6 text-center flex flex-col justify-center items-center h-full max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                CONTACT US FOR YOUR FREE<br />
+                <span class="block">CONSULTATION</span>
+            </h2>
+            <button class="bg-transparent font-semibold border-2 border-[#F7D994] text-black p-3 flex items-center justify-between group hover:bg-amber-500 hover:text-white transition duration-300">
+                <span class="text-white">GET IN TOUCH</span>
+                <span class="ml-4 group-hover:translate-x-1 px-3 bg-[#F7D994] text-black">
+                    <i class="fas fa-arrow-right arrow-icon"></i>
+                </span>
+            </button>
         </div>
-      </section>
+    </section>
 
-      <section class="py-8 clients-section">
-        <div class="container mx-auto px-4 max-w-7xl">
+    <!-- Our Clients Section -->
+    <section class="py-8 clients-section">
+        <div class="container mx-auto px-4 max-w-6xl">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8">OUR CLIENTS</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
-                <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-one.png" alt="Client 1 Logo" class="w-20 h-20 object-contain">
-                </div>
-                <div class="bg-white border-2 border-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-two.png" alt="Client 2 Logo" class="w-16 h-16 object-contain">
-                </div>
-                <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-three.png" alt="Client 3 Logo" class="w-20 h-16 object-contain">
-                </div>
-                <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-three.png" alt="Client 4 Logo" class="w-16 h-16 object-contain">
+            <div class="relative overflow-hidden">
+                <div class="flex transition-transform duration-500" id="clientSlider">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 flex-shrink-0 w-full">
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-one.png" alt="Client 1 Logo" class="w-20 h-20 object-contain">
+                        </div>
+                        <div class="bg-white border-2 border-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-two.png" alt="Client 2 Logo" class="w-16 h-16 object-contain">
+                        </div>
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-three.png" alt="Client 3 Logo" class="w-20 h-16 object-contain">
+                        </div>
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-three.png" alt="Client 4 Logo" class="w-16 h-16 object-contain">
+                        </div>
+                    </div>
+                    <!-- Duplicate for infinite loop -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 flex-shrink-0 w-full">
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-one.png" alt="Client 1 Logo" class="w-20 h-20 object-contain">
+                        </div>
+                        <div class="bg-white border-2 border-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-two.png" alt="Client 2 Logo" class="w-16 h-16 object-contain">
+                        </div>
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-three.png" alt="Client 3 Logo" class="w-20 h-16 object-contain">
+                        </div>
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-three.png" alt="Client 4 Logo" class="w-16 h-16 object-contain">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="flex justify-between items-center mt-8">
-                <a href="#" class="bg-transparent font-semibold border-2 border-[#F7D994] text-black px-6 py-3 flex items-center justify-between group hover:bg-white hover:text-gray-900 transition duration-300">
+                <a href="#" class="bg-transparent font-semibold border-2 border-[#F7D994] text-black px-6 py-3 flex items-center justify-between group hover:bg-amber-500 hover:text-white transition duration-300">
                     <span>View All</span>
-                    <span class="ml-4 group-hover:translate-x-1  px-3 bg-[#F7D994] text-black ">
+                    <span class="ml-4 group-hover:translate-x-1 px-3 bg-[#F7D994] text-black">
                         <i class="fas fa-arrow-right arrow-icon"></i>
                     </span>
                 </a>
                 <div class="flex space-x-2">
-                    <button class="border-2 border-[#F7D994] hover:bg-gray-200 px-3 p-1 flex items-center justify-center ">
+                    <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center" onclick="slideClients(-1)">
                         <i class="fas fa-arrow-left"></i>
                     </button>
-                    <button class="bg-[#F7D994] hover:bg-[#CB9639] px-3 p-1 flex items-center justify-center">
+                    <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center" onclick="slideClients(1)">
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
@@ -367,9 +376,9 @@
         </div>
     </section>
 
+    <!-- Our Project Section -->
     <section class="container mx-auto px-4 py-16 h-full project-section">
-        <!-- Header Section -->
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 max-w-6xl mx-auto">
             <p class="text-[#F7D994] mb-2">Portfolio</p>
             <h1 class="text-white text-5xl font-bold mb-6">OUR PROJECT</h1>
             <p class="text-gray-300 max-w-2xl mx-auto">
@@ -377,88 +386,90 @@
                 euismod tincidunt ut laoreet dolore
             </p>
         </div>
-        
-        <!-- Project  -->
-        <div class="flex flex-col md:flex-row gap-0 max-w-6xl mx-auto">
-    
+        <div class="flex flex-col md:flex-row gap-2 md:gap-0 max-w-6xl mx-auto">
             <div class="relative overflow-hidden project-card w-full md:w-1/3">
-                <img src="/images/project-one.png" 
-                     alt="Modern skyscrapers" 
-                     class="w-full h-80 object-cover">
-            </div>
-            
-
-            <div class="relative overflow-hidden project-card w-full md:w-1/3">
-                <img src="images/project-two.png" 
-                     alt="Office buildings" 
-                     class="w-full h-80 object-cover">
-                <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center">
+                <img src="/images/project-one.png" alt="Modern skyscrapers" class="w-full h-96 object-fill">
+                <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
                     <div>
-                        <h3 class="text-white font-bold">MODERN BUILDING</h3>
-                        <p class="text-black/80">Construction</p>
+                        <h3 class="text-white font-bold">BUSINESS TOWER</h3>
+                        <p class="text-black/80">Architecture</p>
                     </div>
-                    <div class="bg-[#F7D994] p-2 ">
+                    <div class="bg-[#F7D994] p-2">
                         <i class="fas fa-arrow-right"></i>
                     </div>
                 </div>
             </div>
-            
-     
             <div class="relative overflow-hidden project-card w-full md:w-1/3">
-                <img src="/images/project-three.png" 
-                     alt="Glass building" 
-                     class="w-full h-80 object-cover">
+                <img src="/images/project-two.png" alt="Modern skyscrapers" class="w-full h-96 object-fill">
+                <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
+                    <div>
+                        <h3 class="text-white font-bold">BUSINESS TOWER</h3>
+                        <p class="text-black/80">Architecture</p>
+                    </div>
+                    <div class="bg-[#F7D994] p-2">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="relative overflow-hidden project-card w-full md:w-1/3">
+                <img src="/images/project-three.png" alt="Glass building" class="w-full h-96 object-fill">
+                <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
+                    <div>
+                        <h3 class="text-white font-bold">GLASS STRUCTURE</h3>
+                        <p class="text-black/80">Design</p>
+                    </div>
+                    <div class="bg-[#F7D994] p-2">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <!-- Navigation Buttons -->
         <div class="flex justify-between items-center mt-8 max-w-6xl mx-auto">
-            <a href="#" class="border border-[#F7D994] text-white font-semibold px-6 py-3 flex items-center space-x-2 hover:bg-amber-500 hover:text-black transition-all duration-300 group">
-                <span >VIEW ALL</span>
+            <a href="#" class="border border-[#F7D994] text-white font-semibold px-6 py-3 flex items-center space-x-2 hover:bg-amber-500 hover:text-white transition-all duration-300 group">
+                <span>VIEW ALL</span>
                 <i class="fas fa-arrow-right ml-2 arrow-icon bg-[#F7D994] px-3 p-1 text-black"></i>
             </a>
-            
             <div class="flex space-x-2">
-                <button class="arrow-btn border border-[#F7D994] text-white text-amber-500 p-3 flex items-center justify-center">
+                <button class="arrow-btn border border-[#F7D994] text-[#F7D994] p-3 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-all duration-300">
                     <i class="fas fa-arrow-left"></i>
                 </button>
-                <button class="arrow-btn bg-[#F7D994] text-amber-500 px-3  flex items-center justify-center text-black">
+                <button class="arrow-btn bg-[#F7D994] text-black px-3 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-all duration-300">
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Clients Section -->
-    <section class="py-8">
-        <div class="container mx-auto px-4 max-w-7xl">
+    <!-- Our Brand Section -->
+    <section class="py-8 brand-section">
+        <div class="container mx-auto px-4 max-w-6xl">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8">OUR BRAND</h2>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
                 <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-one.png" alt="Client 1 Logo" class="w-20 h-20 object-contain">
+                    <img src="/images/box-one.png" alt="Brand 1 Logo" class="w-20 h-20 object-contain">
                 </div>
                 <div class="bg-white border-2 border-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-two.png" alt="Client 2 Logo" class="w-16 h-16 object-contain">
+                    <img src="/images/box-two.png" alt="Brand 2 Logo" class="w-16 h-16 object-contain">
                 </div>
                 <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-three.png" alt="Client 3 Logo" class="w-20 h-16 object-contain">
+                    <img src="/images/box-three.png" alt="Brand 3 Logo" class="w-20 h-16 object-contain">
                 </div>
                 <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-three.png" alt="Client 4 Logo" class="w-16 h-16 object-contain">
+                    <img src="/images/box-three.png" alt="Brand 4 Logo" class="w-16 h-16 object-contain">
                 </div>
             </div>
             <div class="flex justify-between items-center mt-8">
-                <a href="#" class="bg-transparent font-semibold border-2 border-[#F7D994] text-black px-6 py-3 flex items-center justify-between group hover:bg-white hover:text-gray-900 transition duration-300">
+                <a href="#" class="bg-transparent font-semibold border-2 border-[#F7D994] text-black px-6 py-3 flex items-center justify-between group hover:bg-amber-500 hover:text-white transition duration-300">
                     <span>View All</span>
-                    <span class="ml-4 group-hover:translate-x-1  px-3 bg-[#F7D994] text-black ">
+                    <span class="ml-4 group-hover:translate-x-1 px-3 bg-[#F7D994] text-black">
                         <i class="fas fa-arrow-right arrow-icon"></i>
                     </span>
                 </a>
                 <div class="flex space-x-2">
-                    <button class="border-2 border-[#F7D994] hover:bg-gray-200 px-3 p-1 flex items-center justify-center ">
+                    <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center">
                         <i class="fas fa-arrow-left"></i>
                     </button>
-                    <button class="bg-[#F7D994] hover:bg-[#CB9639] px-3 p-1 flex items-center justify-center">
+                    <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center">
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
@@ -466,11 +477,10 @@
         </div>
     </section>
 
+    <!-- Footer Section -->
     <footer class="bg-[#1E1E1E] text-white">
-        <div class="container mx-auto px-6 py-12 flex justify-center items-center flex-col ">
- 
+        <div class="container mx-auto px-6 py-12 flex justify-center items-center flex-col max-w-6xl">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        
                 <div class="space-y-6">
                     <div class="flex flex-col items-start">
                         <img src="/images/icon.png" alt="BuildWise Constructions Logo" class="h-32 w-auto mb-4">
@@ -479,23 +489,19 @@
                         </p>
                     </div>
                 </div>
-
-              
                 <div>
                     <h3 class="text-[#F7D994] font-semibold text-lg mb-6">PAGE LINKS</h3>
                     <ul class="space-y-3">
-                        <li><a href="#" class="hover:text-[#F7D994] ">Home</a></li>
-                        <li><a href="#" class="hover:text-[#F7D994] ">About us</a></li>
-                        <li><a href="#" class="hover:text-[#F7D994] ">Joint Venture</a></li>
-                        <li><a href="#" class="hover:text-[#F7D994] ">Services</a></li>
-                        <li><a href="#" class="hover:text-[#F7D994] ">Projects</a></li>
-                        <li><a href="#" class="hover:text-[#F7D994] ">Careers</a></li>
-                        <li><a href="#" class="hover:text-[#F7D994] ">Blog</a></li>
-                        <li><a href="#" class="hover:text-[#F7D994] ">Contact</a></li>
+                        <li><a href="#" class="hover:text-[#F7D994]">Home</a></li>
+                        <li><a href="#" class="hover:text-[#F7D994]">About us</a></li>
+                        <li><a href="#" class="hover:text-[#F7D994]">Joint Venture</a></li>
+                        <li><a href="#" class="hover:text-[#F7D994]">Services</a></li>
+                        <li><a href="#" class="hover:text-[#F7D994]">Projects</a></li>
+                        <li><a href="#" class="hover:text-[#F7D994]">Careers</a></li>
+                        <li><a href="#" class="hover:text-[#F7D994]">Blog</a></li>
+                        <li><a href="#" class="hover:text-[#F7D994]">Contact</a></li>
                     </ul>
                 </div>
-
-        
                 <div>
                     <h3 class="text-[#F7D994] font-semibold text-lg mb-6">USEFUL LINKS</h3>
                     <ul class="space-y-3">
@@ -505,8 +511,6 @@
                         <li><a href="#" class="hover:text-[#F7D994] transition-colors">Join as a Contractor</a></li>
                     </ul>
                 </div>
-
-              
                 <div>
                     <h3 class="text-[#F7D994] font-semibold text-lg mb-6">GET IN TOUCH</h3>
                     <address class="not-italic mb-6">
@@ -521,46 +525,38 @@
                     <p>info@buldwise.in</p>
                 </div>
             </div>
-
-                <div class="container mx-auto px-4 py-4 flex items-center justify-between md:flex-row flex-col">
-                    <div class="flex space-x-4 mt-6 ml-8">
-                        <a href="#" class="border border-[#F7D994] p-3 hover:bg-[#CB9639] hover:text-black transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="border border-[#F7D994] p-3 hover:bg-[#CB9639] hover:text-black transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="border border-[#F7D994] p-3 hover:bg-[#CB9639] hover:text-black transition-colors">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="border border-[#F7D994] p-3 hover:bg-[#CB9639] hover:text-black transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>  
-                    <div class="flex items-center space-x-4 mr-32 ml-32 md:ml-0">
-                        <div class="relative w-[300px] mt-8 ml-8 md:w-[600px] ">
-                            <input 
-                                type="email" 
-                                placeholder="Your email address" 
-                                class="w-full bg-transparent text-white border-b border-white py-2 pl-4 pr-32 focus:outline-none focus:border-[#F7D994]"
-                            >
-                            <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent border-b border-white text-[#F7D994] px-4 py-2 focus:outline-none">Subscribe</button>
-                        </div>
+            <div class="container mx-auto px-4 py-4 flex items-center justify-between md:flex-row flex-col max-w-6xl">
+                <div class="flex space-x-4 mt-6 ml-8">
+                    <a href="#" class="border border-[#F7D994] p-3 hover:bg-amber-500 hover:text-white transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="border border-[#F7D994] p-3 hover:bg-amber-500 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="border border-[#F7D994] p-3 hover:bg-amber-500 hover:text-white transition-colors">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="border border-[#F7D994] p-3 hover:bg-amber-500 hover:text-white transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4 mr-32 ml-32 md:ml-0">
+                    <div class="relative w-[300px] mt-8 ml-8 md:w-[600px]">
+                        <input type="email" placeholder="Your email address" class="w-full bg-transparent text-white border-b border-white py-2 pl-4 pr-32 focus:outline-none focus:border-[#F7D994]">
+                        <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent border-b border-white text-[#F7D994] px-4 py-2 focus:outline-none hover:bg-amber-500 hover:text-white transition-colors">Subscribe</button>
                     </div>
                 </div>
             </div>
         </div>
-
-     
         <div class="border-t border-[#F7D994] py-6">
-            <div class="container mx-auto px-6 text-center text-[#F7D994] text-sm">
+            <div class="container mx-auto px-6 text-center text-[#F7D994] text-sm max-w-6xl">
                 © Copyright 2024, all rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile 
+        // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -573,7 +569,7 @@
             mobileMenu.classList.add('mobile-menu-hidden');
         });
 
-      
+        // Testimonial Slider
         let currentSlide = 0;
         const slider = document.getElementById('testimonialSlider');
         const slides = slider.children;
@@ -583,8 +579,6 @@
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
     </script>
-
-    <!-- Include the animations.js file -->
-    <script src="js/animations.js"></script>
+    <script src="/js/animations.js"></script>
 </body>
 </html>
