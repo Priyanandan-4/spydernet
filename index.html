@@ -23,6 +23,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            height: 100vw;
         }
         
         .project-card .hover-content {
@@ -67,27 +68,27 @@
             transform: translateX(5px);
         }
         .slider-container {
-            overflow-x: hidden; 
+            /* overflow-x: hidden;  */
             position: relative;
         }
         .slider {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
-        /* Project section specific styles */
-        .project-section .project-slider {
+      
+        /* .project-section .project-slider {
             display: flex;
             transition: transform 0.5s ease-in-out;
             width: 100%;
-        }
-        /* Ensure project cards are full-width for sliding */
+        } */
+       
         .project-section .project-card {
-            flex: 0 0 100%; /* Each card takes full width for sliding */
+            flex: 0 0 100%; 
             max-width: 100%;
         }
         @media (min-width: 768px) {
             .project-section .project-card {
-                flex: 0 0 33.333%; /* Restore 3 cards per row on desktop */
+                flex: 0 0 33.333%; 
                 max-width: 33.333%;
             }
         }
@@ -229,7 +230,7 @@
     </div>
 
     <!-- Testimonials Section -->
-    <section class="py-16 testimonials-section ">
+    <section class="py-16 testimonials-section overflow-x-hidden ">
         <div class="container mx-auto px-4 max-w-6xl ">
             <div class="flex flex-col md:flex-row gap-8">
                 <div class="md:w-1/2">
@@ -450,8 +451,8 @@
             </p>
         </div>
         <div class="slider-container max-w-6xl mx-auto">
-            <div class="project-slider flex" id="projectSlider">
-                <!-- Original Slides -->
+            <div class="project-slider flex flex-col md:flex-row" id="projectSlider">
+              
                 <div class="relative overflow-hidden project-card">
                     <img src="/images/project-one.png" alt="Modern skyscrapers" class="w-full h-96 object-fill">
                     <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
@@ -684,7 +685,7 @@
             {
                 id: 'projectSlider',
                 slideFn: 'slideProjects',
-                autoInterval: 3000, // Faster sliding for project slider
+                autoInterval: 3000, 
                 slides: null,
                 currentSlide: 0,
                 interval: null
@@ -701,13 +702,13 @@
             }
         });
 
-        function slideTestimonial(direction, manual = false) {
-            const slider = sliders.find(s => s.id === 'testimonialSlider');
-            if (manual) clearInterval(slider.interval); // Pause auto-slide on manual click
-            slider.currentSlide = (slider.currentSlide + direction + slider.slides.length) % slider.slides.length;
-            document.getElementById(slider.id).style.transform = `translateX(-${slider.currentSlide * 100}%)`;
-            if (manual) startAutoSlide(slider); // Restart auto-slide
-        }
+        // function slideTestimonial(direction, manual = false) {
+        //     const slider = sliders.find(s => s.id === 'testimonialSlider');
+        //     if (manual) clearInterval(slider.interval); // Pause auto-slide on manual click
+        //     slider.currentSlide = (slider.currentSlide + direction + slider.slides.length) % slider.slides.length;
+        //     document.getElementById(slider.id).style.transform = `translateX(-${slider.currentSlide * 100}%)`;
+        //     if (manual) startAutoSlide(slider); // Restart auto-slide
+        // }
 
         function slideClients(direction, manual = false) {
             const slider = sliders.find(s => s.id === 'clientSlider');
