@@ -23,8 +23,6 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-             /* min-height: 100vh; */
-            /* width: 100vw; */
         }
         
         .project-card .hover-content {
@@ -48,9 +46,6 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* min-height: 100vh; */
-            /* width: 100vw; */
-            /* display: flex; */
             justify-content: center;
             align-items: center;
         }
@@ -61,7 +56,7 @@
             transform: translateX(100%);
         }
         @media (max-width: 767px) {
-            .testimonials-section {
+            .testimonials-section, .clients-section, .brand-section {
                 overflow-x: hidden;
             }
         }
@@ -70,6 +65,31 @@
         }
         .group:hover .arrow-icon {
             transform: translateX(5px);
+        }
+        .slider-container {
+            overflow-x: hidden; 
+            position: relative;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        /* Project section specific styles */
+        .project-section .project-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+        /* Ensure project cards are full-width for sliding */
+        .project-section .project-card {
+            flex: 0 0 100%; /* Each card takes full width for sliding */
+            max-width: 100%;
+        }
+        @media (min-width: 768px) {
+            .project-section .project-card {
+                flex: 0 0 33.333%; /* Restore 3 cards per row on desktop */
+                max-width: 33.333%;
+            }
         }
     </style>
 </head>
@@ -123,7 +143,7 @@
 
     <!-- Hero Section -->
     <section class="hero-section ">
-        <div class="container  mx-auto max-w-6xl md:py-12 py-48 relative z-10 flex flex-col items-center justify-center px-4 ">
+        <div class="container mx-auto max-w-6xl md:py-12 py-48 relative z-10 flex flex-col items-center justify-center px-4 ">
             <div class="flex flex-col md:flex-row items-center w-full md:gap-28">
                 <div class="text-white mt-8 md:mt-24 md:w-1/2 text-center md:text-left order-2 md:order-1">
                     <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-2">WE ARE</h2>
@@ -209,22 +229,22 @@
     </div>
 
     <!-- Testimonials Section -->
-    <section class="py-16 testimonials-section overflow-x-hidden">
-        <div class="container mx-auto px-4 max-w-6xl">
+    <section class="py-16 testimonials-section ">
+        <div class="container mx-auto px-4 max-w-6xl ">
             <div class="flex flex-col md:flex-row gap-8">
                 <div class="md:w-1/2">
                     <div class="relative w-full max-w-[560px] aspect-square">
                         <img src="/images/works.png" alt="Construction workers" class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <button class="bg-amber-500 hover:bg-amber-500 transition-colors rounded-full w-20 h-20 flex items-center justify-center">
+                            <button class="bg-amber-500 hover:bg-amber-600 transition-colors rounded-full w-20 h-20 flex items-center justify-center">
                                 <i class="fas fa-play text-white text-xl"></i>
                             </button>
                         </div>
                         <div class="absolute bottom-4 right-4 flex space-x-2">
-                            <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center text-white">
+                            <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center text-white" onclick="slideTestimonial(-1, true)">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
-                            <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center">
+                            <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center" onclick="slideTestimonial(1, true)">
                                 <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
@@ -238,8 +258,51 @@
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
                     </div>
-                    <div class="relative">
-                        <div class="flex transition-transform duration-500" id="testimonialSlider">
+                    <div class="relative slider-container">
+                        <div class="slider flex transition-transform duration-500" id="testimonialSlider">
+                            <div class="w-full max-w-[480px] flex-shrink-0 bg-gray-100 p-6 mr-4">
+                                <div class="flex justify-center -mt-12 mb-4">
+                                    <img src="/images/review.png" alt="Claudia Doel" class="w-16 h-16 rounded-full border-4 border-white">
+                                </div>
+                                <div class="flex justify-center mb-4">
+                                    <div class="flex">
+                                        <i class="fas fa-star text-[#8B6319]"></i>
+                                        <i class="fas fa-star text-[#8B6319]"></i>
+                                        <i class="fas fa-star text-[#8B6319]"></i>
+                                        <i class="fas fa-star text-[#8B6319]"></i>
+                                        <i class="far fa-star text-gray-300"></i>
+                                    </div>
+                                </div>
+                                <p class="text-black text-center mb-4">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </p>
+                                <div class="text-center">
+                                    <h4 class="text-[#8B6319] font-semibold">Claudia Doel</h4>
+                                    <p class="text-black">Consultant</p>
+                                </div>
+                            </div>
+                            <div class="w-full max-w-[480px] flex-shrink-0 bg-gray-100 p-6 mr-4">
+                                <div class="flex justify-center -mt-12 mb-4">
+                                    <img src="/images/review.png" alt="Claudia Doel" class="w-16 h-16 rounded-full border-4 border-white">
+                                </div>
+                                <div class="flex justify-center mb-4">
+                                    <div class="flex">
+                                        <i class="fas fa-star text-[#8B6319]"></i>
+                                        <i class="fas fa-star text-[#8B6319]"></i>
+                                        <i class="fas fa-star text-[#8B6319]"></i>
+                                        <i class="fas fa-star text-[#8B6319]"></i>
+                                        <i class="far fa-star text-gray-300"></i>
+                                    </div>
+                                </div>
+                                <p class="text-black text-center mb-4">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </p>
+                                <div class="text-center">
+                                    <h4 class="text-[#8B6319] font-semibold">Claudia Doel</h4>
+                                    <p class="text-black">Consultant</p>
+                                </div>
+                            </div>
+                            <!-- Duplicate for infinite loop -->
                             <div class="w-full max-w-[480px] flex-shrink-0 bg-gray-100 p-6 mr-4">
                                 <div class="flex justify-center -mt-12 mb-4">
                                     <img src="/images/review.png" alt="Claudia Doel" class="w-16 h-16 rounded-full border-4 border-white">
@@ -289,10 +352,10 @@
                                 <i class="fas fa-arrow-right ml-2 arrow-icon bg-[#F7D994] p-1 px-3"></i>
                             </a>
                             <div class="flex space-x-2">
-                                <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center">
+                                <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center" onclick="slideTestimonial(-1, true)">
                                     <i class="fas fa-arrow-left"></i>
                                 </button>
-                                <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center">
+                                <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center" onclick="slideTestimonial(1, true)">
                                     <i class="fas fa-arrow-right"></i>
                                 </button>
                             </div>
@@ -322,10 +385,10 @@
 
     <!-- Our Clients Section -->
     <section class="py-8 clients-section">
-        <div class="container mx-auto px-4 max-w-6xl">
+        <div class="container mx-auto px-4 max-w-6xl overflow-x-hidden">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8">OUR CLIENTS</h2>
-            <div class="relative overflow-hidden">
-                <div class="flex transition-transform duration-500" id="clientSlider">
+            <div class="slider-container">
+                <div class="slider flex transition-transform duration-500" id="clientSlider">
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 flex-shrink-0 w-full">
                         <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
                             <img src="/images/box-one.png" alt="Client 1 Logo" class="w-20 h-20 object-contain">
@@ -358,17 +421,17 @@
                 </div>
             </div>
             <div class="flex justify-between items-center mt-8">
-                <a href="#" class="bg-transparent font-semibold border-2 border-[#F7D994] text-black px-6 py-3 flex items-center justify-between group hover:bg-amber-500 hover:text-white transition duration-300">
+                <a href="#" class="bg-transparent font-semibold border-2 border-[#F7D994] text-black px-6 py-3 flex items-center surplusjustify-between group hover:bg-amber-500 hover:text-white transition duration-300">
                     <span>View All</span>
                     <span class="ml-4 group-hover:translate-x-1 px-3 bg-[#F7D994] text-black">
                         <i class="fas fa-arrow-right arrow-icon"></i>
                     </span>
                 </a>
                 <div class="flex space-x-2">
-                    <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center" onclick="slideClients(-1)">
+                    <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center" onclick="slideClients(-1, true)">
                         <i class="fas fa-arrow-left"></i>
                     </button>
-                    <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center" onclick="slideClients(1)">
+                    <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center" onclick="slideClients(1, true)">
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
@@ -386,42 +449,46 @@
                 euismod tincidunt ut laoreet dolore
             </p>
         </div>
-        <div class="flex flex-col md:flex-row gap-2 md:gap-0 max-w-6xl mx-auto">
-            <div class="relative overflow-hidden project-card w-full md:w-1/3">
-                <img src="/images/project-one.png" alt="Modern skyscrapers" class="w-full h-96 object-fill">
-                <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
-                    <div>
-                        <h3 class="text-white font-bold">BUSINESS TOWER</h3>
-                        <p class="text-black/80">Architecture</p>
-                    </div>
-                    <div class="bg-[#F7D994] p-2">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="relative overflow-hidden project-card w-full md:w-1/3">
-                <img src="/images/project-two.png" alt="Modern skyscrapers" class="w-full h-96 object-fill">
-                <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
-                    <div>
-                        <h3 class="text-white font-bold">BUSINESS TOWER</h3>
-                        <p class="text-black/80">Architecture</p>
-                    </div>
-                    <div class="bg-[#F7D994] p-2">
-                        <i class="fas fa-arrow-right"></i>
+        <div class="slider-container max-w-6xl mx-auto">
+            <div class="project-slider flex" id="projectSlider">
+                <!-- Original Slides -->
+                <div class="relative overflow-hidden project-card">
+                    <img src="/images/project-one.png" alt="Modern skyscrapers" class="w-full h-96 object-fill">
+                    <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
+                        <div>
+                            <h3 class="text-white font-bold">BUSINESS TOWER</h3>
+                            <p class="text-black/80">Architecture</p>
+                        </div>
+                        <div class="bg-[#F7D994] p-2">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="relative overflow-hidden project-card w-full md:w-1/3">
-                <img src="/images/project-three.png" alt="Glass building" class="w-full h-96 object-fill">
-                <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
-                    <div>
-                        <h3 class="text-white font-bold">GLASS STRUCTURE</h3>
-                        <p class="text-black/80">Design</p>
-                    </div>
-                    <div class="bg-[#F7D994] p-2">
-                        <i class="fas fa-arrow-right"></i>
+                <div class="relative overflow-hidden project-card">
+                    <img src="/images/project-two.png" alt="Modern skyscrapers" class="w-full h-96 object-fill">
+                    <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
+                        <div>
+                            <h3 class="text-white font-bold">BUSINESS TOWER</h3>
+                            <p class="text-black/80">Architecture</p>
+                        </div>
+                        <div class="bg-[#F7D994] p-2">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
                     </div>
                 </div>
+                <div class="relative overflow-hidden project-card">
+                    <img src="/images/project-three.png" alt="Glass building" class="w-full h-96 object-fill">
+                    <div class="absolute bottom-0 left-0 right-0 bg-[#CB9639] p-4 flex justify-between items-center hover-content">
+                        <div>
+                            <h3 class="text-white font-bold">GLASS STRUCTURE</h3>
+                            <p class="text-black/80">Design</p>
+                        </div>
+                        <div class="bg-[#F7D994] p-2">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+        
             </div>
         </div>
         <div class="flex justify-between items-center mt-8 max-w-6xl mx-auto">
@@ -430,10 +497,10 @@
                 <i class="fas fa-arrow-right ml-2 arrow-icon bg-[#F7D994] px-3 p-1 text-black"></i>
             </a>
             <div class="flex space-x-2">
-                <button class="arrow-btn border border-[#F7D994] text-[#F7D994] p-3 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-all duration-300">
+                <button class="arrow-btn border border-[#F7D994] text-[#F7D994] p-3 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-all duration-300" onclick="slideProjects(-1, true)">
                     <i class="fas fa-arrow-left"></i>
                 </button>
-                <button class="arrow-btn bg-[#F7D994] text-black px-3 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-all duration-300">
+                <button class="arrow-btn bg-[#F7D994] text-black px-3 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-all duration-300" onclick="slideProjects(1, true)">
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
@@ -441,21 +508,40 @@
     </section>
 
     <!-- Our Brand Section -->
-    <section class="py-8 brand-section">
-        <div class="container mx-auto px-4 max-w-6xl">
+    <section class="py-8 brand-section ">
+        <div class="container mx-auto px-4 max-w-6xl overflow-x-hidden">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8">OUR BRAND</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
-                <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-one.png" alt="Brand 1 Logo" class="w-20 h-20 object-contain">
-                </div>
-                <div class="bg-white border-2 border-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-two.png" alt="Brand 2 Logo" class="w-16 h-16 object-contain">
-                </div>
-                <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-three.png" alt="Brand 3 Logo" class="w-20 h-16 object-contain">
-                </div>
-                <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
-                    <img src="/images/box-three.png" alt="Brand 4 Logo" class="w-16 h-16 object-contain">
+            <div class="slider-container">
+                <div class="slider flex transition-transform duration-500" id="brandSlider">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 flex-shrink-0 w-full">
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-one.png" alt="Brand 1 Logo" class="w-20 h-20 object-contain">
+                        </div>
+                        <div class="bg-white border-2 border-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-two.png" alt="Brand 2 Logo" class="w-16 h-16 object-contain">
+                        </div>
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-three.png" alt="Brand 3 Logo" class="w-20 h-16 object-contain">
+                        </div>
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-three.png" alt="Brand 4 Logo" class="w-16 h-16 object-contain">
+                        </div>
+                    </div>
+                    <!-- Duplicate for infinite loop -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 flex-shrink-0 w-full">
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-one.png" alt="Brand 1 Logo" class="w-20 h-20 object-contain">
+                        </div>
+                        <div class="bg-white border-2 border-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-two.png" alt="Brand 2 Logo" class="w-16 h-16 object-contain">
+                        </div>
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-three.png" alt="Brand 3 Logo" class="w-20 h-16 object-contain">
+                        </div>
+                        <div class="bg-gray-100 p-4 flex items-center justify-center rounded-md h-40">
+                            <img src="/images/box-three.png" alt="Brand 4 Logo" class="w-16 h-16 object-contain">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="flex justify-between items-center mt-8">
@@ -466,10 +552,10 @@
                     </span>
                 </a>
                 <div class="flex space-x-2">
-                    <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center">
+                    <button class="border-2 border-[#F7D994] hover:bg-amber-500 hover:text-white px-3 p-1 flex items-center justify-center" onclick="slideBrands(-1, true)">
                         <i class="fas fa-arrow-left"></i>
                     </button>
-                    <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center">
+                    <button class="bg-[#F7D994] hover:bg-amber-500 px-3 p-1 flex items-center justify-center" onclick="slideBrands(1, true)">
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
@@ -484,7 +570,7 @@
                 <div class="space-y-6">
                     <div class="flex flex-col items-start">
                         <img src="/images/icon.png" alt="BuildWise Constructions Logo" class="h-32 w-auto mb-4">
-                        <p class="text-gray-400 text-sm max-w-xs">
+                        <p class="text-gray-400 text-sm max1170px-w-xs">
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
                         </p>
                     </div>
@@ -569,16 +655,101 @@
             mobileMenu.classList.add('mobile-menu-hidden');
         });
 
-        // Testimonial Slider
-        let currentSlide = 0;
-        const slider = document.getElementById('testimonialSlider');
-        const slides = slider.children;
+        // Slider Configuration
+        const sliders = [
+            {
+                id: 'testimonialSlider',
+                slideFn: 'slideTestimonial',
+                autoInterval: 5000,
+                slides: null,
+                currentSlide: 0,
+                interval: null
+            },
+            {
+                id: 'clientSlider',
+                slideFn: 'slideClients',
+                autoInterval: 5000,
+                slides: null,
+                currentSlide: 0,
+                interval: null
+            },
+            {
+                id: 'brandSlider',
+                slideFn: 'slideBrands',
+                autoInterval: 5000,
+                slides: null,
+                currentSlide: 0,
+                interval: null
+            },
+            {
+                id: 'projectSlider',
+                slideFn: 'slideProjects',
+                autoInterval: 3000, // Faster sliding for project slider
+                slides: null,
+                currentSlide: 0,
+                interval: null
+            }
+        ];
 
-        function slideTestimonial(direction) {
-            currentSlide = (currentSlide + direction + slides.length) % slides.length;
-            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        // Initialize Sliders
+        sliders.forEach(slider => {
+            const sliderElement = document.getElementById(slider.id);
+            if (sliderElement) {
+                slider.slides = sliderElement.children;
+                // Start automatic sliding
+                startAutoSlide(slider);
+            }
+        });
+
+        function slideTestimonial(direction, manual = false) {
+            const slider = sliders.find(s => s.id === 'testimonialSlider');
+            if (manual) clearInterval(slider.interval); // Pause auto-slide on manual click
+            slider.currentSlide = (slider.currentSlide + direction + slider.slides.length) % slider.slides.length;
+            document.getElementById(slider.id).style.transform = `translateX(-${slider.currentSlide * 100}%)`;
+            if (manual) startAutoSlide(slider); // Restart auto-slide
         }
+
+        function slideClients(direction, manual = false) {
+            const slider = sliders.find(s => s.id === 'clientSlider');
+            if (manual) clearInterval(slider.interval);
+            slider.currentSlide = (slider.currentSlide + direction + slider.slides.length) % slider.slides.length;
+            document.getElementById(slider.id).style.transform = `translateX(-${slider.currentSlide * 100}%)`;
+            if (manual) startAutoSlide(slider);
+        }
+
+        function slideBrands(direction, manual = false) {
+            const slider = sliders.find(s => s.id === 'brandSlider');
+            if (manual) clearInterval(slider.interval);
+            slider.currentSlide = (slider.currentSlide + direction + slider.slides.length) % slider.slides.length;
+            document.getElementById(slider.id).style.transform = `translateX(-${slider.currentSlide * 100}%)`;
+            if (manual) startAutoSlide(slider);
+        }
+
+        // function slideProjects(direction, manual = false) {
+        //     const slider = sliders.find(s => s.id === 'projectSlider');
+        //     if (manual) clearInterval(slider.interval);
+        //     slider.currentSlide = (slider.currentSlide + direction + slider.slides.length) % slider.slides.length;
+        //     document.getElementById(slider.id).style.transform = `translateX(-${slider.currentSlide * 100}%)`;
+        //     if (manual) startAutoSlide(slider);
+        // }
+
+        function startAutoSlide(slider) {
+            clearInterval(slider.interval); // Clear any existing interval
+            slider.interval = setInterval(() => {
+                window[slider.slideFn](1); // Call the respective slide function
+            }, slider.autoInterval);
+        }
+
+        // Stop auto-sliding when user interacts with the page
+        document.addEventListener('visibilitychange', () => {
+            sliders.forEach(slider => {
+                if (document.visibilityState === 'hidden') {
+                    clearInterval(slider.interval);
+                } else {
+                    startAutoSlide(slider);
+                }
+            });
+        });
     </script>
-    <script src="/js/animations.js"></script>
 </body>
 </html>
