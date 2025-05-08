@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Testimonial slider animation enhancement
   function enhanceTestimonialSlider() {
-    const slider = document.getElementById("testimonialSlider");
+    const slider = document.getElementById("testimoniSlider");
     if (!slider) return;
     
     const slides = slider.children;
@@ -76,9 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     
     // Set up auto-slide
-    window.autoSlideInterval = setInterval(() => {
-      slideTestimonial(1);
-    }, 5000);
+    // window.autoSlideInterval = setInterval(() => {
+    //   slideTestimonial(1);
+    // }, 5000);
   }
 
   // Add CSS animations
@@ -193,15 +193,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add simple hover effects
   function addSimpleInteractions() {
     // Enhance project card hover effects
-    const projectCards = document.querySelectorAll(".project-card");
-    projectCards.forEach(card => {
-      const hoverContent = card.querySelector(".hover-content");
-      if (hoverContent) {
-        card.addEventListener("mouseenter", () => {
-          hoverContent.style.opacity = "1";
-        });
-      }
-    });
+    // const projectCards = document.querySelectorAll(".project-card");
+    // projectCards.forEach(card => {
+    //   const hoverContent = card.querySelector(".hover-content");
+    //   if (hoverContent) {
+    //     card.addEventListener("mouseenter", () => {
+    //       hoverContent.style.opacity = "1";
+    //     });
+    //   }
+    // });
     
     // Mobile menu animation
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
